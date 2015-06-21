@@ -1,0 +1,108 @@
+##Codebook - Human Activity Recognition using Smartphones Data Set
+
+**Human Activity Recognition using Smartphones Data Set is taken from the following publication:**
+
+Davide Anguita, Alessandro Ghio, Luca Oneto, Xavier Parra and Jorge L. Reyes-Ortiz. Human Activity Recognition on Smartphones using a Multiclass Hardware-Friendly Support Vector Machine. International Workshop of Ambient Assisted Living (IWAAL 2012). Vitoria-Gasteiz, Spain. Dec 2012
+
+* Total number of variables: 68
+* Total number of observations: 180
+* Missing values: None
+* XYZ: Triaxial signals (3-axial signals in the X, Y, and Z directions)
+
+
+**Steps taken to clean data set**
+
+*There are 13 objects used from step 1-12. Objects are shown below in boldface and italics.*
+
+1. Download dataset, check data set for missing values, type of data, dimensions (# of variables and observations).
+2. Load test and train dataset in ***test*** and ***train*** objects respectively.
+3. Load feature, extract column names and save in ***feature*** object.
+4. Load test and train activity in ***test_activity*** and ***train_activity*** objects respectively and replace activity ID by activity name.
+5. Load test subject and train subject in ***subject_test*** and ***subject_train*** respectively.
+6. Column bind ***subject_test***,***test_activity*** and ***test*** datasets to get test dataset. The test dataset has 2947 observations and 563 variables.
+7. Column bind ***subject_train***,***train_activity*** and ***train*** datasets to get train dataset. The train dataset has 7352 observations and 563 variables.
+8. Row bind ***train*** and ***test*** datasets to get ***train_test*** dataset. The dataset has 10299 observations and 563 variables.
+9. Column names which includes mean() and std() are extracted along with subject and activity and saved in ***train_test_extract*** object. The variables in extracted dataset has gone down to 68 variables.
+10. Change column names in ***train_test_extract***. Following are the replacements done:
+    * mean() to mean
+    * std() to std
+    * BodyBody to Body
+    * -- to _
+11. Using 'dcast', taking Subject & Activity and calculate mean on each variable and save dataset into ***tidy_dataset***. The ***tidy_dataset*** has 180 observations and 68 variables. There are 30 subjects x 6 activity which reflects correct total number of observations.
+12. Write ***tidy_dataset*** into 'tidy_dataset.txt' file. 
+    
+
+---
+| Variable Name         | Description                     | (Values,unit)-Explanation                                                                             |
+|-----------------------|---------------------------------|-------------------------------------------------------------------------------------------------------|
+| Subject               | ID of the subject               | (1:30)-Experiment is done by 30 humans identified by a number                                         |
+| Activity              | Name of the activity            | (1:6)-Activities are identified by numbers between 1 to 6.                                            |
+|                       |                                 | 1=Walking,2=Walking Upstairs,3=Walking Downstairs,4=Sitting,5=Standing,6=Laying                       |
+| tBodyAcc_mean_X       | Body acceleration               | (-1:1,g)-Mean of X-axis body acceleration signal from the accelerometer in time-domain (td)           |
+| tBodyAcc_mean_Y       | Body acceleration               | (-1:1,g)-Mean of Y-axis body acceleration signal from the accelerometer in td                         |
+| tBodyAcc_mean_Z       | Body acceleration               | (-1:1,g)-Mean of Z-axis body acceleration signal from the accelerometer in td                         |
+| tGravityAcc_mean_X    | Gravity acceleration            | (-1:1,g)-Mean of X-axis gravity acceleration signal from the accelerometer in td                      |
+| tGravityAcc_mean_Y    | Gravity acceleration            | (-1:1,g)-Mean of Y-axis gravity acceleration signal from the accelerometer in td                      |
+| tGravityAcc_mean_Z    | Gravity acceleration            | (-1:1,g)-Mean of Z-axis gravity acceleration signal from the accelerometer in td                      |
+| tBodyAccJerk_mean_X   | Body jerk                       | (-1:1,g)-Mean of X-axis body acceleration jerk signal from the accelerometer in td                    |
+| tBodyAccJerk_mean_Y   | Body jerk                       | (-1:1,g)-Mean of Y-axis body acceleration jerk signal from the accelerometer in td                    |
+| tBodyAccJerk_mean_Z   | Body jerk                       | (-1:1,g)-Mean of Z-axis body acceleration jerk signal from the accelerometer in td                    |
+| tBodyGyro_mean_X      | Angular velocity                | (-1:1,radians/s)-Mean of X-axis body angular velocity signal from the gyroscope in td                 |
+| tBodyGyro_mean_Y      | Angular velocity                | (-1:1,radians/s)-Mean of Y-axis body angular velocity signal from the gyroscope in td                 |
+| tBodyGyro_mean_Z      | Angular velocity                | (-1:1,radians/s)-Mean of Z-axis body angular velocity signal from the gyroscope in td                 |
+| tBodyGyroJerk_mean_X  | Body jerk angular velocity      | (-1:1,radians/s)-Mean of X-axis body angular velocity jerk signal from the gyrpscope in td            |
+| tBodyGyroJerk_mean_Y  | Body jerk angular velocity      | (-1:1,radians/s)-Mean of Y-axis body angular velocity jerk signal from the gyrpscope in td            |
+| tBodyGyroJerk_mean_Z  | Body jerk angular velocity      | (-1:1,radians/s)-Mean of Z-axis body angular velocity jerk signal from the gyrpscope in td            |
+| tBodyAccMag_mean      | Magnitude of body acceleration  | (-1:1,g)-Magnitude of three-dimensional body acceleration signal using Euclidean norm in td           |
+| tGravityAccMag_mean   | Magnitude of gravity accel      | (-1:1,g)-Magnitude of three-dimensional gravity acceleration signal using Euclidean norm in td        |
+| tBodyAccJerkMag_mean  | Magnitude of body jerk          | (-1:1,g)-Magnitude of 3D body acceleration jerk signal from the acceletometer in td                   |
+| tBodyGyroMag_mean     | Magnitude of angular velocity   | (-1:1,radians/s)-Magnitude of 3D body angular velocity signal from the gyroscope in td                |
+| tBodyGyroJerkMag_mean | Magnitude of body jerk ang v.   | (-1:1,radians/s)-Magnitude of 3D body angular velocity jerk signal from the gyroscope in td           |
+| fBodyAcc_mean_X       | Body acceleration               | (-1:1,g)-Mean of X-axis body acceleration signal from the accelerometer in frequency-domain (fd)      |
+| fBodyAcc_mean_Y       | Body acceleration               | (-1:1,g)-Mean of Y-axis body acceleration signal from the accelerometer in fd                         |
+| fBodyAcc_mean_Z       | Body acceleration               | (-1:1,g)-Mean of Z-axis body acceleration signal from the accelerometer in fd                         |
+| fBodyAccJerk_mean_X   | Body jerk                       | (-1:1,g)-Mean of X-axis body acceleration jerk signal from the accelerometer in fd                    |
+| fBodyAccJerk_mean_Y   | Body jerk                       | (-1:1,g)-Mean of Y-axis body acceleration jerk signal from the accelerometer in fd                    |
+| fBodyAccJerk_mean_Z   | Body jerk                       | (-1:1,g)-Mean of Z-axis body acceleration jerk signal from the accelerometer in fd                    |
+| fBodyGyro_mean_X      | Angular velocity                | (-1:1,radians/s)-Mean of X-axis body angular velocity signal from the gyroscope in fd                 |
+| fBodyGyro_mean_Y      | Angular velocity                | (-1:1,radians/s)-Mean of Y-axis body angular velocity signal from the gyroscope in fd                 |
+| fBodyGyro_mean_Z      | Angular velocity                | (-1:1,radians/s)-Mean of Z-axis body angular velocity signal from the gyroscope in fd                 |
+| fBodyAccMag_mean      | Magnitude of body acceleration  | (-1:1,g)-Magnitude of three-dimensional body acceleration signal using Euclidean norm in fd           |
+| fBodyAccJerkMag_mean  | Magnitude of body jerk          | (-1:1,g)-Magnitude of 3D body acceleration jerk signal from the acceletometer in fd                   |
+| fBodyGyroMag_mean     | Magnitude of angular velocity   | (-1:1,radians/s)-Magnitude of 3D body angular velocity signal from the gyroscope in fd                |
+| fBodyGyroJerkMag_mean | Magnitude of body jerk ang v.   | (-1:1,radians/s)-Magnitude of 3D body angular velocity jerk signal from the gyroscope in fd           |
+| tBodyAcc_sd_X         | Body acceleration               | (-1:1,g)-Standard deviation of X-axis body acceleration signal from the accelerometer in td           |
+| tBodyAcc_sd_Y         | Body acceleration               | (-1:1,g)-Standard deviation of Y-axis body acceleration signal from the accelerometer in td           |
+| tBodyAcc_sd_Z         | Body acceleration               | (-1:1,g)-Standard deviation of Z-axis body acceleration signal from the accelerometer in td           |
+| tGravityAcc_sd_X      | Gravity acceleration            | (-1:1,g)-Standard deviation of X-axis gravity acceleration signal from the accelerometer in td        |
+| tGravityAcc_sd_Y      | Gravity acceleration            | (-1:1,g)-Standard deviation of Y-axis gravity acceleration signal from the accelerometer in td        |
+| tGravityAcc_sd_Z      | Gravity acceleration            | (-1:1,g)-Standard deviation of Z-axis gravity acceleration signal from the accelerometer in td        |
+| tBodyAccJerk_sd_X     | Body jerk                       | (-1:1,g)-Standard deviation of X-axis body acceleration jerk signal from the accelerometer in td      |
+| tBodyAccJerk_sd_Y     | Body jerk                       | (-1:1,g)-Standard deviation of Y-axis body acceleration jerk signal from the accelerometer in td      |
+| tBodyAccJerk_sd_Z     | Body jerk                       | (-1:1,g)-Standard deviation of Z-axis body acceleration jerk signal from the accelerometer in td      |
+| tBodyGyro_sd_X        | Angular velocity                | (-1:1,radians/s)-Standard deviation of X-axis body angular velocity signal from the gyroscope in td   |
+| tBodyGyro_sd_Y        | Angular velocity                | (-1:1,radians/s)-Standard deviation of Y-axis body angular velocity signal from the gyroscope in td   |
+| tBodyGyro_sd_Z        | Angular velocity                | (-1:1,radians/s)-Standard deviation of Z-axis body angular velocity signal from the gyroscope in td   |
+| tBodyGyroJerk_sd_X    | Body jerk angular velocity      | (-1:1,radians/s)-Std.dev of X-axis body angular velocity jerk signal from the gyrpscope in td         |
+| tBodyGyroJerk_sd_Y    | Body jerk angular velocity      | (-1:1,radians/s)-Std.dev of Y-axis body angular velocity jerk signal from the gyrpscope in td         |
+| tBodyGyroJerk_sd_Z    | Body jerk angular velocity      | (-1:1,radians/s)-Std.dev of Z-axis body angular velocity jerk signal from the gyrpscope in td         |
+| tBodyAccMag_sd        | Magnitude of body acceleration  | (-1:1,g)-Magnitude of three-dimensional body acceleration signal using Euclidean norm in td           |
+| tGravityAccMag_sd     | Magnitude of gravity accel      | (-1:1,g)-Magnitude of three-dimensional gravity acceleration signal using Euclidean norm in td        |
+| tBodyAccJerkMag_sd    | Magnitude of body jerk          | (-1:1,g)-Magnitude of three-dimensional body acceleration jerk signal from the acceletometer in td    |
+| tBodyGyroMag_sd       | Magnitude of angular velocity   | (-1:1,radians/s)-Magnitude of 3D body angular velocity signal from the gyroscope in td                |
+| tBodyGyroJerkMag_sd   | Magnitude of body jerk ang v.   | (-1:1,radians/s)-Magnitude of 3D body angular velocity jerk signal from the gyroscope in td           |
+| fBodyAcc_sd_X         | Body acceleration               | (-1:1,g)-Standard deviation of X-axis body acceleration signal from the accelerometer in fd           |
+| fBodyAcc_sd_Y         | Body acceleration               | (-1:1,g)-Standard deviation of Y-axis body acceleration signal from the accelerometer in fd           |
+| fBodyAcc_sd_Z         | Body acceleration               | (-1:1,g)-Standard deviation of Z-axis body acceleration signal from the accelerometer in fd           |
+| fBodyAccJerk_sd_X     | Body jerk                       | (-1:1,g)-Standard deviation of X-axis body acceleration jerk signal from the accelerometer in fd      |
+| fBodyAccJerk_sd_Y     | Body jerk                       | (-1:1,g)-Standard deviation of Y-axis body acceleration jerk signal from the accelerometer in fd      |
+| fBodyAccJerk_sd_Z     | Body jerk                       | (-1:1,g)-Standard deviation of Z-axis body acceleration jerk signal from the accelerometer in fd      |
+| fBodyGyro_sd_X        | Angular velocity                | (-1:1,radians/s)-Standard deviation of X-axis body angular velocity signal from the gyroscope in fd   |
+| fBodyGyro_sd_Y        | Angular velocity                | (-1:1,radians/s)-Standard deviation of Y-axis body angular velocity signal from the gyroscope in fd   |
+| fBodyGyro_sd_Z        | Angular velocity                | (-1:1,radians/s)-Standard deviation of Z-axis body angular velocity signal from the gyroscope in fd   |
+| fBodyAccMag_sd        | Magnitude of body acceleration  | (-1:1,g)-Magnitude of three-dimensional body acceleration signal using Euclidean norm in fd           |
+| fBodyAccJerkMag_sd    | Magnitude of body jerk          | (-1:1,g)-Magnitude of three-dimensional body acceleration jerk signal from the acceletometer in fd    |
+| fBodyGyroMag_sd       | Magnitude of angular velocity   | (-1:1,radians/s)-Magnitude of 3D body angular velocity signal from the gyroscope in fd                |
+| fBodyGyroJerkMag_sd   | Magnitude of body jerk ang v.   | (-1:1,radians/s)-Magnitude of 3D body angular velocity jerk signal from the gyroscope in fd           |
+
+**---End of codebook---**
